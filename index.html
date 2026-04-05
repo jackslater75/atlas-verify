@@ -152,10 +152,10 @@
                             { 
                                 type: "execute", 
                                 stmt: { 
-                                    sql: "SELECT nome, cognome, ruolo, attivo, 'Socio' as tipo FROM soci WHERE UPPER(numeroTessera) = UPPER(?) " +
-                                         "UNION SELECT nome, cognome, 'Partecipante' as ruolo, attivo, 'Partecipante' as tipo FROM partecipanti WHERE UPPER(numeroTessera) = UPPER(?) " +
-                                         "UNION SELECT nome, cognome, 'Volontario' as ruolo, 1 as attivo, 'Volontario' as tipo FROM volontari WHERE UPPER(numeroTessera) = UPPER(?)", 
-                                    args: [memberId, memberId, memberId] 
+                                    sql: "SELECT nome, cognome, ruolo, attivo, 'Socio' as tipo FROM soci WHERE numeroTessera = ? " +
+                                         "UNION SELECT nome, cognome, 'Partecipante' as ruolo, attivo, 'Partecipante' as tipo FROM partecipanti WHERE numeroTessera = ? " +
+                                         "UNION SELECT nome, cognome, 'Volontario' as ruolo, 1 as attivo, 'Volontario' as tipo FROM volontari WHERE numeroTessera = ?", 
+                                    args: [memberId.toUpperCase(), memberId.toUpperCase(), memberId.toUpperCase()] 
                                 } 
                             },
                             { type: "close" }
